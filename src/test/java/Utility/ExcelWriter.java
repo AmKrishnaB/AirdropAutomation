@@ -7,7 +7,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -46,7 +45,7 @@ public class ExcelWriter {
         }
     }
 
-    public static void writeStringsToExcel(String phrase, String address, String publicKey, String privateKey, String filePath, String sheetName) throws IOException {
+    public static void writeStringsToExcel(String[] wallet, String filePath, String sheetName) throws IOException {
         try (FileInputStream fis = new FileInputStream(filePath);
              Workbook workbook = new XSSFWorkbook(fis);
              FileOutputStream fos = new FileOutputStream(filePath)) {
@@ -55,10 +54,10 @@ public class ExcelWriter {
             int lastRow = sheet.getLastRowNum();
             // Create a new row
             Row newRow = sheet.createRow(lastRow + 1);
-            newRow.createCell(0).setCellValue(phrase);
-            newRow.createCell(1).setCellValue(address);
-            newRow.createCell(2).setCellValue(publicKey);
-            newRow.createCell(3).setCellValue(privateKey);
+            newRow.createCell(0).setCellValue(wallet[0]);
+            newRow.createCell(1).setCellValue(wallet[1]);
+            newRow.createCell(2).setCellValue(wallet[2]);
+            newRow.createCell(3).setCellValue(wallet[3]);
             workbook.write(fos);
         }
     }

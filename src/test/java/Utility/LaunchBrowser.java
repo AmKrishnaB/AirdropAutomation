@@ -24,4 +24,5 @@ public class LaunchBrowser {
 
         return new ChromeDriver(options);
     }
+    public static WebDriver driver;
 }

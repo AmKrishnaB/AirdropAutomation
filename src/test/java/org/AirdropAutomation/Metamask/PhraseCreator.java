@@ -17,17 +17,17 @@ public class PhraseCreator {
 
         driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#onboarding/welcome");
 
-        Actions.wait(driver, 10);
-        click(driver, "//input[@class=\"check-box onboarding__terms-checkbox far fa-square\"]");
-        click(driver, "//button[@class=\"button btn--rounded btn-primary\"]");
-        click(driver, "//button[@class=\"button btn--rounded btn-primary btn--large\"]");
-        input(driver, "(//input[@class=\"form-field__input\"])[1]", "D5ubvcqueviweu@");
-        input(driver, "(//input[@class=\"form-field__input\"])[2]", "D5ubvcqueviweu@");
-        click(driver, "//input[@class=\"check-box far fa-square\"]");
-        click(driver, "//button[@class=\"button btn--rounded btn-primary btn--large create-password__form--submit-button\"]");
-        click(driver, "//button[@data-testid=\"secure-wallet-recommended\"]");
+        Actions.wait(10);
+        click("//input[@class=\"check-box onboarding__terms-checkbox far fa-square\"]");
+        click("//button[@class=\"button btn--rounded btn-primary\"]");
+        click("//button[@class=\"button btn--rounded btn-primary btn--large\"]");
+        input("(//input[@class=\"form-field__input\"])[1]", "D5ubvcqueviweu@");
+        input("(//input[@class=\"form-field__input\"])[2]", "D5ubvcqueviweu@");
+        click("//input[@class=\"check-box far fa-square\"]");
+        click("//button[@class=\"button btn--rounded btn-primary btn--large create-password__form--submit-button\"]");
+        click("//button[@data-testid=\"secure-wallet-recommended\"]");
         Thread.sleep(5000);
-        click(driver, "//button[@class=\"button btn--rounded btn-primary recovery-phrase__footer--button\"]");
+        click("//button[@class=\"button btn--rounded btn-primary recovery-phrase__footer--button\"]");
         List<WebElement> elements = driver.findElements(By.xpath("//div[contains(@data-testid,\"recovery-phrase-chip-\")]"));
 
         List<String> orderedTextList = new ArrayList<>();
