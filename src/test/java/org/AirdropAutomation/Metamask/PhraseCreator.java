@@ -1,4 +1,4 @@
-package org.AirdropAutomation;
+package org.AirdropAutomation.Metamask;
 
 import Utility.Actions;
 import Utility.LaunchBrowser;
@@ -21,8 +21,8 @@ public class PhraseCreator {
         click(driver, "//input[@class=\"check-box onboarding__terms-checkbox far fa-square\"]");
         click(driver, "//button[@class=\"button btn--rounded btn-primary\"]");
         click(driver, "//button[@class=\"button btn--rounded btn-primary btn--large\"]");
-        input(driver, "(//input[@class=\"form-field__input\"])[1]", "dubvcquevibuwvubqiweu");
-        input(driver, "(//input[@class=\"form-field__input\"])[2]", "dubvcquevibuwvubqiweu");
+        input(driver, "(//input[@class=\"form-field__input\"])[1]", "D5ubvcqueviweu@");
+        input(driver, "(//input[@class=\"form-field__input\"])[2]", "D5ubvcqueviweu@");
         click(driver, "//input[@class=\"check-box far fa-square\"]");
         click(driver, "//button[@class=\"button btn--rounded btn-primary btn--large create-password__form--submit-button\"]");
         click(driver, "//button[@data-testid=\"secure-wallet-recommended\"]");

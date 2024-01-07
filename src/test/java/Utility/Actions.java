@@ -9,7 +9,13 @@ import java.time.Duration;
 
 public class Actions extends LaunchBrowser{
     public static void click(WebDriver driver, String xpath){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         driver.findElement(By.xpath(xpath)).click();
+    }
+
+    public static void clickWithID(WebDriver driver, String ID){
+        driver.findElement(By.id(ID)).click();
     }
 
     public static void wait(WebDriver driver, int seconds){

@@ -16,4 +16,12 @@ public class LaunchBrowser {
 
         return new ChromeDriver(options);
     }
+    public static WebDriver webdriverWithLeo() {
+        WebDriverManager.chromedriver().setup();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addExtensions(new File(System.getProperty("user.dir")+"\\LeoWallet.crx"));
+
+        return new ChromeDriver(options);
+    }
 }
