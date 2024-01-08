@@ -8,42 +8,42 @@ import static Utility.LaunchBrowser.webdriverWithLeo;
 
 public class Runner {
 
-//    public static void generate(int currentRow) {
-//        for (int i = 0; i < 50; i++) {
-//            driver = webdriverWithLeo();
-//            driver.manage().window().maximize();
-//            try {
-//                String[] wallet = PhraseCreator.createPhrase();
-//                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1", currentRow);
-//            }
-//            catch (Exception ignored){}
-//            finally {
-//                driver.quit();
-//            }
-//        }
-//    }
-
-
-    public static void generate(int currentRow) {
-        driver = webdriverWithLeo();
-        driver.manage().window().maximize();
-        try {
-            String[] wallet = PhraseCreator.createPhrase();
-            ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1", currentRow);
-        }
-        catch (Exception ignored){}
-        finally {
-            driver.quit();
-        }
-    }
-
-    public static Runnable generateMultiThread(int currentRow) {
+    public static void generate() {
         for (int i = 0; i < 50; i++) {
             driver = webdriverWithLeo();
             driver.manage().window().maximize();
             try {
                 String[] wallet = PhraseCreator.createPhrase();
-                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1", currentRow);
+                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1");
+            }
+            catch (Exception ignored){}
+            finally {
+                driver.quit();
+            }
+        }
+    }
+
+
+//    public static void generate() {
+//        driver = webdriverWithLeo();
+//        driver.manage().window().maximize();
+//        try {
+//            String[] wallet = PhraseCreator.createPhrase();
+//            ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1");
+//        }
+//        catch (Exception ignored){}
+//        finally {
+//            driver.quit();
+//        }
+//    }
+
+    public static Runnable generateMultiThread() {
+        for (int i = 0; i < 50; i++) {
+            driver = webdriverWithLeo();
+            driver.manage().window().maximize();
+            try {
+                String[] wallet = PhraseCreator.createPhrase();
+                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1");
             }
             catch (Exception ignored){}
             finally {
@@ -53,14 +53,14 @@ public class Runner {
         return null;
     }
 
-    public static void generateAndClaim(int currentRow) {
+    public static void generateAndClaim() {
         for (int i = 0; i < 50; i++) {
             driver = webdriverWithLeo();
             driver.manage().window().maximize();
             try {
                 String[] wallet = PhraseCreator.createPhrase();
                 AleoSwap.claim();
-                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1", currentRow);
+                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1");
             }
             catch (Exception ignored){}
             finally {

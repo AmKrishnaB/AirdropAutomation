@@ -44,16 +44,15 @@ public class ExcelWriter {
         }
     }
 
-    public static void writeStringsToExcel(String[] wallet, String filePath, String sheetName, int currentRow) throws IOException {
+    public static void writeStringsToExcel(String[] wallet, String filePath, String sheetName) throws IOException {
         try (FileInputStream fis = new FileInputStream(filePath);
              Workbook workbook = new XSSFWorkbook(fis);
              FileOutputStream fos = new FileOutputStream(filePath)) {
             // Get the existing sheet by name
             Sheet sheet = workbook.getSheet(sheetName);
-//            int lastRow = sheet.getLastRowNum();
-//            // Create a new row
-//            Row newRow = sheet.createRow(lastRow + 1);
-            Row newRow = sheet.createRow(currentRow);
+            int lastRow = sheet.getLastRowNum();
+            // Create a new row
+            Row newRow = sheet.createRow(lastRow + 1);
             newRow.createCell(0).setCellValue(wallet[0]);
             newRow.createCell(1).setCellValue(wallet[1]);
             newRow.createCell(2).setCellValue(wallet[2]);
