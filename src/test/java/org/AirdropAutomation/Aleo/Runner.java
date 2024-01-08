@@ -8,18 +8,32 @@ import static Utility.LaunchBrowser.webdriverWithLeo;
 
 public class Runner {
 
+//    public static void generate(int currentRow) {
+//        for (int i = 0; i < 50; i++) {
+//            driver = webdriverWithLeo();
+//            driver.manage().window().maximize();
+//            try {
+//                String[] wallet = PhraseCreator.createPhrase();
+//                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1", currentRow);
+//            }
+//            catch (Exception ignored){}
+//            finally {
+//                driver.quit();
+//            }
+//        }
+//    }
+
+
     public static void generate(int currentRow) {
-        for (int i = 0; i < 50; i++) {
-            driver = webdriverWithLeo();
-            driver.manage().window().maximize();
-            try {
-                String[] wallet = PhraseCreator.createPhrase();
-                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1", currentRow);
-            }
-            catch (Exception ignored){}
-            finally {
-                driver.quit();
-            }
+        driver = webdriverWithLeo();
+        driver.manage().window().maximize();
+        try {
+            String[] wallet = PhraseCreator.createPhrase();
+            ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1", currentRow);
+        }
+        catch (Exception ignored){}
+        finally {
+            driver.quit();
         }
     }
 
