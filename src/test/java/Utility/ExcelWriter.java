@@ -16,7 +16,6 @@ public class ExcelWriter {
         try (FileInputStream fis = new FileInputStream(filePath);
              Workbook workbook = new XSSFWorkbook(fis);
              FileOutputStream fos = new FileOutputStream(filePath)) {
-            // Create a new sheet
             // Get the existing sheet by name
             Sheet sheet = workbook.getSheet(sheetName);
 

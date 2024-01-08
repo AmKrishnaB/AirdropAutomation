@@ -13,10 +13,15 @@ public class Runner {
         for (int i = 0; i < 50; i++) {
             driver = webdriverWithLeo();
             driver.manage().window().maximize();
-            String[] wallet = PhraseCreator.createPhrase();
-            AleoSwap.swapper();
-            ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1");
-            driver.quit();
+            try {
+                String[] wallet = PhraseCreator.createPhrase();
+                AleoSwap.swapper();
+                ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1");
+            }
+            catch (Exception ignored){}
+            finally {
+                driver.quit();
+            }
         }
     }
 }

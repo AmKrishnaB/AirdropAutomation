@@ -23,33 +23,33 @@ public class AleoSwap extends LaunchBrowser {
         //click("//*[@class=\"text-lg lg:hidden\"]");//small window hamburger button
         click("//*[@class=\"inner\"  and text()=\"Faucet\"]");
         click("(//button[@class=\"text-primary-500 hover:underline\"])[1]");
-        Thread.sleep(8000);
+        Thread.sleep(10000);
         Set<String> allWindows1 = driver.getWindowHandles();
         List<String> windowHandlesList1 = new ArrayList<>(allWindows1);
         driver.switchTo().window(windowHandlesList1.get(1));
         click("//Button[text()=\"Confirm\"]");
         driver.switchTo().window(windowHandlesList1.get(0));
-        waitTillVisible("//span[text()=\"Completed\"]", 2700000);
+        waitTillVisible("//span[text()=\"Completed\"]", 60000);
         click("//*[@transform=\"translate(-593 -779.5)\"]");
 
         click("(//button[@class=\"text-primary-500 hover:underline\"])[2]");
-        Thread.sleep(8000);
+        Thread.sleep(10000);
         Set<String> allWindows2 = driver.getWindowHandles();
         List<String> windowHandlesList2 = new ArrayList<>(allWindows2);
         driver.switchTo().window(windowHandlesList2.get(2));
         click("//Button[text()=\"Confirm\"]");
         driver.switchTo().window(windowHandlesList2.get(0));
-        waitTillVisible("//span[text()=\"Completed\"]", 2700000);
+        waitTillVisible("//span[text()=\"Completed\"]", 60000);
         click("//*[@transform=\"translate(-593 -779.5)\"]");
 
         click("(//button[@class=\"text-primary-500 hover:underline\"])[3]");
-        Thread.sleep(8000);
+        Thread.sleep(10000);
         Set<String> allWindows3 = driver.getWindowHandles();
         List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
         driver.switchTo().window(windowHandlesList3.get(2));
         click("//Button[text()=\"Confirm\"]");
         driver.switchTo().window(windowHandlesList3.get(0));
-        waitTillVisible("//span[text()=\"Completed\"]", 2700000);
+        waitTillVisible("//span[text()=\"Completed\"]", 60000);
         click("//*[@transform=\"translate(-593 -779.5)\"]");
     }
 }
