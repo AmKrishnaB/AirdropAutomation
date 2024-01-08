@@ -9,7 +9,7 @@ import java.util.Set;
 import static Utility.Actions.*;
 
 public class AleoSwap extends LaunchBrowser {
-    public static void swapper() throws InterruptedException {
+    public static void claim() throws InterruptedException {
         driver.navigate().to("https://app.aleoswap.org/swap/public");
         click("//span[@class=\"text-xs lg:text-sm\"]");
         click("(//span[@class=\"text-base font-semibold\"])[1]");
@@ -23,7 +23,7 @@ public class AleoSwap extends LaunchBrowser {
         //click("//*[@class=\"text-lg lg:hidden\"]");//small window hamburger button
         click("//*[@class=\"inner\"  and text()=\"Faucet\"]");
         click("(//button[@class=\"text-primary-500 hover:underline\"])[1]");
-        Thread.sleep(10000);
+        Thread.sleep(15000);
         Set<String> allWindows1 = driver.getWindowHandles();
         List<String> windowHandlesList1 = new ArrayList<>(allWindows1);
         driver.switchTo().window(windowHandlesList1.get(1));
@@ -33,7 +33,7 @@ public class AleoSwap extends LaunchBrowser {
         click("//*[@transform=\"translate(-593 -779.5)\"]");
 
         click("(//button[@class=\"text-primary-500 hover:underline\"])[2]");
-        Thread.sleep(10000);
+        Thread.sleep(15000);
         Set<String> allWindows2 = driver.getWindowHandles();
         List<String> windowHandlesList2 = new ArrayList<>(allWindows2);
         driver.switchTo().window(windowHandlesList2.get(2));
@@ -43,7 +43,7 @@ public class AleoSwap extends LaunchBrowser {
         click("//*[@transform=\"translate(-593 -779.5)\"]");
 
         click("(//button[@class=\"text-primary-500 hover:underline\"])[3]");
-        Thread.sleep(10000);
+        Thread.sleep(15000);
         Set<String> allWindows3 = driver.getWindowHandles();
         List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
         driver.switchTo().window(windowHandlesList3.get(2));

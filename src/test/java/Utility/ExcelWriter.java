@@ -44,19 +44,33 @@ public class ExcelWriter {
         }
     }
 
-    public static void writeStringsToExcel(String[] wallet, String filePath, String sheetName) throws IOException {
+    public static void writeStringsToExcel(String[] wallet, String filePath, String sheetName, int currentRow) throws IOException {
         try (FileInputStream fis = new FileInputStream(filePath);
              Workbook workbook = new XSSFWorkbook(fis);
              FileOutputStream fos = new FileOutputStream(filePath)) {
             // Get the existing sheet by name
             Sheet sheet = workbook.getSheet(sheetName);
-            int lastRow = sheet.getLastRowNum();
-            // Create a new row
-            Row newRow = sheet.createRow(lastRow + 1);
+//            int lastRow = sheet.getLastRowNum();
+//            // Create a new row
+//            Row newRow = sheet.createRow(lastRow + 1);
+            Row newRow = sheet.createRow(currentRow);
             newRow.createCell(0).setCellValue(wallet[0]);
             newRow.createCell(1).setCellValue(wallet[1]);
             newRow.createCell(2).setCellValue(wallet[2]);
             newRow.createCell(3).setCellValue(wallet[3]);
+            workbook.write(fos);
+        }
+    }
+
+    public static void writeDoneToExcel(String filePath, String sheetName, int rowNumber, int columnNumber) throws IOException {
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis);
+             FileOutputStream fos = new FileOutputStream(filePath)) {
+            // Get the existing sheet by name
+            Sheet sheet = workbook.getSheet(sheetName);
+            Row currentRow= sheet.getRow(rowNumber);
+            Cell currentCell= currentRow.createCell(columnNumber);
+            currentCell.setCellValue("Done");
             workbook.write(fos);
         }
     }

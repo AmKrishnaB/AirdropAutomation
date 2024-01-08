@@ -45,15 +45,14 @@ public class ExcelReader {
         return values;
     }
 
-//    public static String readOneCellPhrase(String filePath, String sheetName){
-//        try (FileInputStream fis = new FileInputStream(filePath);
-//             Workbook workbook = new XSSFWorkbook(fis);{
-//            Sheet sheet = workbook.getSheet(sheetName);
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        return sheet.getRow(sheet.getLastRowNum()).getCell(0).getStringCellValue();
-//    }
+    public static String readOneCellPhrase(String filePath, String sheetName, int rowNumber) {
+        Sheet sheet;
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis)) {
+            sheet = workbook.getSheet(sheetName);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return sheet.getRow(rowNumber).getCell(0).getStringCellValue();
+    }
 }
