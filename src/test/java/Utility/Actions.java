@@ -42,5 +42,11 @@ public class Actions extends LaunchBrowser{
         return driver.findElement(By.xpath(xpath)).getText();
     }
 
+    public static boolean isDisplayed(String xpath){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+        return driver.findElement(By.xpath(xpath)).isDisplayed();
+    }
+
 
 }
