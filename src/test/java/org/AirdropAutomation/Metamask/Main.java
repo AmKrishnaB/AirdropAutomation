@@ -13,10 +13,14 @@ public class Main {
     public static void main(String[] args) throws InterruptedException, AWTException {
         LaunchBrowser.driver =LaunchBrowser.webdriverWithMetamask();
         driver.manage().window().maximize();
-        List<String> phrase = AccountCreator.createPhrase();
-        String address = AccountCreator.createPhraseAndSignup();
-        L2Faucet.claim(address);
-        ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
-        driver.quit();
+        try {
+            List<String> phrase = AccountCreator.createPhrase();
+            String address = AccountCreator.createPhraseAndSignup();
+            L2Faucet.claim(address);
+            ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
+        }
+        finally {
+            driver.quit();
+        }
     }
 }
