@@ -32,7 +32,14 @@ public class Actions extends LaunchBrowser{
     }
 
     public static void input(String xpath, String input){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         driver.findElement(By.xpath(xpath)).sendKeys(input);
+    }
+
+
+    public static String getTextToString(String xpath){
+        return driver.findElement(By.xpath(xpath)).getText();
     }
 
 

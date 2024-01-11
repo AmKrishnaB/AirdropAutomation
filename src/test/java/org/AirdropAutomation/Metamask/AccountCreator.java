@@ -1,23 +1,24 @@
 package org.AirdropAutomation.Metamask;
 
-import Utility.Actions;
 import Utility.LaunchBrowser;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static Utility.Actions.*;
 
-public class PhraseCreator {
+public class AccountCreator extends LaunchBrowser{
     public static List<String> createPhrase() throws InterruptedException {
-        WebDriver driver = LaunchBrowser.webdriverWithMetamask();
-
         driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#onboarding/welcome");
-
-        Actions.wait(10);
+        Thread.sleep(4000);
+        Set<String> allWindows = driver.getWindowHandles();
+        List<String> windowHandlesList = new ArrayList<>(allWindows);
+        driver.switchTo().window(windowHandlesList.get(1));
+        driver.close();
+        driver.switchTo().window(windowHandlesList.get(0));
         click("//input[@class=\"check-box onboarding__terms-checkbox far fa-square\"]");
         click("//button[@class=\"button btn--rounded btn-primary\"]");
         click("//button[@class=\"button btn--rounded btn-primary btn--large\"]");
@@ -26,7 +27,6 @@ public class PhraseCreator {
         click("//input[@class=\"check-box far fa-square\"]");
         click("//button[@class=\"button btn--rounded btn-primary btn--large create-password__form--submit-button\"]");
         click("//button[@data-testid=\"secure-wallet-recommended\"]");
-        Thread.sleep(5000);
         click("//button[@class=\"button btn--rounded btn-primary recovery-phrase__footer--button\"]");
         List<WebElement> elements = driver.findElements(By.xpath("//div[contains(@data-testid,\"recovery-phrase-chip-\")]"));
 
@@ -36,8 +36,22 @@ public class PhraseCreator {
             String text = element.getText();
             orderedTextList.add(text);
         }
-
-        driver.quit();
         return orderedTextList;
+    }
+
+    public static String createPhraseAndSignup(){
+        driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#onboarding/secure-your-wallet");
+        click("//*[@data-testid=\"secure-wallet-later\"]");
+        click("//*[@data-testid=\"skip-srp-backup-popover-checkbox\"]");
+        click("//*[@data-testid=\"skip-srp-backup\"]");
+        click("//*[@data-testid=\"onboarding-complete-done\"]");
+        click("//*[@data-testid=\"pin-extension-next\"]");
+        click("//*[@data-testid=\"pin-extension-done\"]");
+        click("//*[@data-testid=\"popover-close\"]");
+        click("//*[@data-testid=\"account-options-menu-button\"]");
+        click("//*[@data-testid=\"account-list-menu-details\"]");
+        String address = getTextToString("(//*[@class=\"mm-box mm-box--display-flex\"])[2]");
+
+        return address;
     }
 }
