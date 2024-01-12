@@ -11,16 +11,20 @@ import static Utility.LaunchBrowser.driver;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, AWTException {
-        LaunchBrowser.driver =LaunchBrowser.webdriverWithMetamask();
-        driver.manage().window().maximize();
-        try {
-            List<String> phrase = AccountCreator.createPhrase();
-            String address = AccountCreator.createPhraseAndSignup();
-            L2Faucet.claim(address);
-            ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
-        }
-        finally {
-            driver.quit();
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("Account "+i);
+            LaunchBrowser.driver =LaunchBrowser.webdriverWithMetamask();
+            driver.manage().window().maximize();
+            try {
+                List<String> phrase = AccountCreator.createPhrase();
+                String address = AccountCreator.createPhraseAndSignup();
+                L2Faucet.claim(address);
+                ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
+            }
+            catch (Exception e){}
+            finally {
+                driver.quit();
+            }
         }
     }
 }

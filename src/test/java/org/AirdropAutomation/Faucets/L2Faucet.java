@@ -26,12 +26,16 @@ public class L2Faucet {
         click("//*[@class=\"framer-16wnbb1\"]");
         input("//*[@placeholder=\"Enter your wallet address\"]", address);
         click("//*[text()=\"Get Tokens\"]");
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         WindowsHelloHandler.enterPin();
-        Thread.sleep(10000);
-//        Robot robot = new Robot();
-//        robot.keyPress(KeyEvent.VK_TAB);
-//        robot.keyPress(KeyEvent.VK_ENTER);
+        Thread.sleep(4000);
+        WindowsHelloHandler.enterPin();
+
+
+        Robot robot = new Robot();
+        Thread.sleep(5000);
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+
         isDisplayed("//*[text()=\"Tokens in transit\"]");
     }
 }

@@ -13,8 +13,6 @@ public class WindowsHelloHandler {
         robot.keyPress(KeyEvent.VK_ENTER);
 
 
-        Thread.sleep(10000);
-        robot.keyPress(KeyEvent.VK_ESCAPE);
     }
 
     private static void typePin(Robot robot, String pin) {
@@ -23,7 +21,6 @@ public class WindowsHelloHandler {
 
         // Type each character
         for (char pinChar : pinChars) {
-            System.out.println("Char "+pinChar);
             int keyCode = KeyEvent.getExtendedKeyCodeForChar(pinChar);
             robot.keyPress(keyCode);
             robot.keyRelease(keyCode);
