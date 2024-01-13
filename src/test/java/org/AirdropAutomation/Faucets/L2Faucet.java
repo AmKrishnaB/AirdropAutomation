@@ -28,12 +28,9 @@ public class L2Faucet {
         click("//*[text()=\"Get Tokens\"]");
         Thread.sleep(4000);
         WindowsHelloHandler.enterPin();
-        Thread.sleep(4000);
-        WindowsHelloHandler.enterPin();
-
 
         Robot robot = new Robot();
-        Thread.sleep(5000);
+        Thread.sleep(4000);
         robot.keyPress(KeyEvent.VK_ESCAPE);
 
         isDisplayed("//*[text()=\"Tokens in transit\"]");
