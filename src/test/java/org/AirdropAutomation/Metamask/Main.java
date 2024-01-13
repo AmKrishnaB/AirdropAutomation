@@ -4,13 +4,12 @@ import Utility.ExcelWriter;
 import Utility.LaunchBrowser;
 import org.AirdropAutomation.Faucets.L2Faucet;
 
-import java.awt.*;
 import java.util.List;
 
 import static Utility.LaunchBrowser.driver;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException, AWTException {
+    public static void main(String[] args){
         for (int i = 0; i < 1000; i++) {
             System.out.println("Account "+i);
             LaunchBrowser.driver =LaunchBrowser.webdriverWithMetamask();

@@ -13,6 +13,7 @@ public class LaunchBrowser {
 
         ChromeOptions options = new ChromeOptions();
         options.addExtensions(new File(System.getProperty("user.dir")+"\\metamask.crx"));
+        options.addArguments("--headless=new");
 
         return new ChromeDriver(options);
     }

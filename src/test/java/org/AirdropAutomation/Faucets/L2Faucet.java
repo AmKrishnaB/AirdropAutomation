@@ -28,6 +28,8 @@ public class L2Faucet {
         click("//*[text()=\"Get Tokens\"]");
         Thread.sleep(4000);
         WindowsHelloHandler.enterPin();
+        Thread.sleep(4000);
+        WindowsHelloHandler.enterPin();
 
         Robot robot = new Robot();
         Thread.sleep(4000);
