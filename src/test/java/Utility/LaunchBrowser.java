@@ -25,5 +25,16 @@ public class LaunchBrowser {
 
         return new ChromeDriver(options);
     }
+
+    public static WebDriver webdriverWithPhantom() {
+        WebDriverManager.chromedriver().setup();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addExtensions(new File(System.getProperty("user.dir")+"\\phantom.crx"));
+//        options.addArguments("--user-data-dir=C:/Users/Krishna/AppData/Local/Google/Chrome/User Data/Default");
+//        options.addArguments("--profile-directory=Profile "+Thread.currentThread().getId());
+        return new ChromeDriver(options);
+    }
+
     public static WebDriver driver;
 }

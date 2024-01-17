@@ -20,7 +20,7 @@ public class Main {
                 L2Faucet.claim(address);
                 ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
             }
-            catch (Exception e){}
+            catch (Exception ignored){}
             finally {
                 driver.quit();
             }
