@@ -31,6 +31,7 @@ public class LaunchBrowser {
 
         ChromeOptions options = new ChromeOptions();
         options.addExtensions(new File(System.getProperty("user.dir")+"\\phantom.crx"));
+        options.addArguments("--headless=new");
 //        options.addArguments("--user-data-dir=C:/Users/Krishna/AppData/Local/Google/Chrome/User Data/Default");
 //        options.addArguments("--profile-directory=Profile "+Thread.currentThread().getId());
         return new ChromeDriver(options);

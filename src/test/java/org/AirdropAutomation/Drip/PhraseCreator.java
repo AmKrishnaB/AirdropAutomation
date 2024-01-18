@@ -28,7 +28,6 @@ public class PhraseCreator {
         for (int i = 0; i <= 11; i++) {
             String word = driver.findElement(By.xpath("//*[@data-testid=\"secret-recovery-phrase-word-input-" + i + "\"]")).getAttribute("value");
             phrase[i]=word;
-            System.out.println(phrase[i]);
         }
 //
 //        click("//*[@data-testid=\"onboarding-form-saved-secret-recovery-phrase-checkbox\"]/..");
