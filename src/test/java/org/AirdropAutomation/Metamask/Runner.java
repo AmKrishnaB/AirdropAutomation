@@ -8,8 +8,12 @@ import java.util.List;
 
 import static Utility.LaunchBrowser.driver;
 
-public class Main {
+public class Runner {
     public static void main(String[] args){
+        createAcc();
+    }
+
+    public static void normal(){
         for (int i = 0; i < 1000; i++) {
             System.out.println("Account "+i);
             LaunchBrowser.driver =LaunchBrowser.webdriverWithMetamask();
@@ -18,6 +22,23 @@ public class Main {
                 List<String> phrase = AccountCreator.createPhrase();
                 String address = AccountCreator.createPhraseAndSignup();
                 L2Faucet.claim(address);
+                ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
+            }
+            catch (Exception ignored){}
+            finally {
+                driver.quit();
+            }
+        }
+    }
+
+    public static void createAcc(){
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("Account "+i);
+            try {
+                driver = LaunchBrowser.webdriverWithMetamask();
+                driver.manage().window().maximize();
+                List<String> phrase = AccountCreator.createPhrase();
+                String address = AccountCreator.createPhraseAndSignup();
                 ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
             }
             catch (Exception ignored){}
