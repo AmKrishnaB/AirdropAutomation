@@ -1,16 +1,19 @@
 package org.AirdropAutomation.Metamask;
 
+import Utility.ExcelReader;
 import Utility.ExcelWriter;
 import Utility.LaunchBrowser;
 import org.AirdropAutomation.Faucets.L2Faucet;
+import org.AirdropAutomation.setter.Setter;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static Utility.LaunchBrowser.driver;
 
 public class Runner {
-    public static void main(String[] args){
-        createAcc();
+    public static void main(String[] args) throws InterruptedException {
+        setter();
     }
 
     public static void normal(){
@@ -46,5 +49,14 @@ public class Runner {
                 driver.quit();
             }
         }
+    }
+
+    public static void setter() throws InterruptedException {
+        driver = LaunchBrowser.webdriverWithMetamask();
+        driver.manage().window().maximize();
+        List<String> phrase = ExcelReader.undonePhrase(System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
+        MetamaskLogin.loginWithPhrase(phrase);
+        Setter.getSetter();
+        driver.quit();
     }
 }

@@ -55,4 +55,34 @@ public class ExcelReader {
         }
         return sheet.getRow(rowNumber).getCell(0).getStringCellValue();
     }
+
+    public static List<String> undonePhrase(String filePath, String sheetName) {
+        List<String> values = new ArrayList<>();
+
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis)) {
+
+            // Get the specified sheet by name
+            Sheet sheet = workbook.getSheet(sheetName);
+
+            for (int i = 0; i < sheet.getLastRowNum(); i++) {
+                Row currentRow= sheet.getRow(i);
+                Cell statusCell= currentRow.getCell(13);
+                String status = statusCell.getStringCellValue();
+                if (status!="Done"){
+                    for (int j = 0; j < 12; j++) {
+                        Cell phraseCell= row.getCell(j);
+                        values.add(phraseCell.getStringCellValue());
+                    }
+                    }
+                }
+            } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return values;
+    }
+
+
 }
