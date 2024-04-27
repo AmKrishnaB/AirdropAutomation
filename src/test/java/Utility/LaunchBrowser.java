@@ -37,5 +37,11 @@ public class LaunchBrowser {
         return new ChromeDriver(options);
     }
 
+
+    public static WebDriver webdriver() {
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver();
+    }
+
     public static WebDriver driver;
 }

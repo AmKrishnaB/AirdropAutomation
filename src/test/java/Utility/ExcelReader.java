@@ -71,8 +71,8 @@ public class ExcelReader {
                 String status = statusCell.getStringCellValue();
                 if (status!="Done"){
                     for (int j = 0; j < 12; j++) {
-                        Cell phraseCell= row.getCell(j);
-                        values.add(phraseCell.getStringCellValue());
+//                        Cell phraseCell= row.getCell(j);
+//                        values.add(phraseCell.getStringCellValue());
                     }
                     }
                 }
