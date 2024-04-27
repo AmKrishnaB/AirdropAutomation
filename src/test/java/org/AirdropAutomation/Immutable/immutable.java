@@ -1,8 +1,5 @@
 package org.AirdropAutomation.Immutable;
 
-import org.awaitility.Awaitility;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +25,7 @@ public class immutable {
 
         driver.switchTo().window(windowHandlesList1.get(0));
         driver.get("https://imx.community/gems");
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         click("//*[@data-testid=\"claim-gems__connect-btn\"]");
         click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
 
@@ -37,15 +34,18 @@ public class immutable {
         driver.switchTo().window(windowHandlesList2.get(1));
         click("//*[text()=\"Yes\"]");
 
+        Thread.sleep(5000);
         driver.switchTo().window(windowHandlesList2.get(0));
-        waitTillVisible("//*[@class=\"BiomeButton__inner css-oecpvc\"]", 15);
-        waitTillClickable("//*[@class=\"BiomeButton__inner css-oecpvc\"]", 15);
-        click("//*[@class=\"BiomeButton__inner css-oecpvc\"]");
+        waitUntilElementDisappears("//*[@data-testid=\"connect-wallet\"]", 20);
+        waitTillClickable("//*[@data-testid=\"claim-gems__get-gems-btn\"]", 10);
+        click("//*[@data-testid=\"claim-gems__get-gems-btn\"]");
 
         Set<String> allWindows3 = driver.getWindowHandles();
         List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
         driver.switchTo().window(windowHandlesList3.get(1));
         click("//*[text()=\"Accept\"]");
+        driver.switchTo().window(windowHandlesList3.get(0));
+        waitTillVisible("//*[@data-testid=\"claimed__next-in\"]", 10);
         
     }
 

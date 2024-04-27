@@ -9,9 +9,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Actions extends LaunchBrowser{
 
-    static AtomicBoolean visibiltyOfElement;
-
-
     public static void click(String xpath){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
@@ -38,6 +35,7 @@ public class Actions extends LaunchBrowser{
 
     public static void waitUntilElementDisappears(String xpath, int timeout){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
     }
 
     public static void input(String xpath, String input){
