@@ -117,6 +117,39 @@ public class ExcelWriter {
         }
     }
 
+    public static void writeAddressAndTokenToExcel(String address,String token, String filePath, String sheetName) {
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis);
+             FileOutputStream fos = new FileOutputStream(filePath)) {
+            // Get the existing sheet by name
+            Sheet sheet = workbook.getSheet(sheetName);
+
+            // If the sheet doesn't exist, create a new one
+            if (sheet == null) {
+                sheet = workbook.createSheet(sheetName);
+            }
+
+            // Find the last row index
+            int lastRow = sheet.getLastRowNum();
+
+            // Create a new row
+            Row newRow = sheet.createRow(lastRow + 1);
+
+            // Create a cell and set the value for each column
+            Cell cell = newRow.createCell(0);
+            cell.setCellValue(address);
+
+            Cell cell2 = newRow.createCell(1);
+            cell2.setCellValue(token);
+
+            // Write the updated workbook to a file
+            workbook.write(fos);
+            System.out.println("Values appended to existing sheet in Excel file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void writePhraseArrayToExcel(String[] phrase, String filePath, String sheetName) {
         try (FileInputStream fis = new FileInputStream(filePath);
