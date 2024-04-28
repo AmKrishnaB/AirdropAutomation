@@ -23,9 +23,11 @@ public class immutable {
         click("//*[text()=\"Yes\"]");
 
         driver.switchTo().window(windowHandlesList1.get(0));
+        Thread.sleep(1000);
         driver.get("https://imx.community/gems");
         Thread.sleep(2000);
         click("//*[@data-testid=\"claim-gems__connect-btn\"]");
+        waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 20);
         click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
 
         Set<String> allWindows2 = driver.getWindowHandles();
@@ -42,9 +44,10 @@ public class immutable {
         Set<String> allWindows3 = driver.getWindowHandles();
         List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
         driver.switchTo().window(windowHandlesList3.get(1));
+        waitTillVisible("//*[text()=\"Accept\"]", 10);
         click("//*[text()=\"Accept\"]");
         driver.switchTo().window(windowHandlesList3.get(0));
-        waitTillVisible("//*[@data-testid=\"claimed__next-in\"]", 10);
+        waitTillVisible("//*[text()=\"You've claimed\"]", 10);
         
     }
 
