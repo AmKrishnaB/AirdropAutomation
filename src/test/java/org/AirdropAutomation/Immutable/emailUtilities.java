@@ -20,8 +20,6 @@ public class emailUtilities {
         }
         address.append("@fthcapital.com");
 
-        System.out.println(address);
-
         email.address=address.toString();
     }
 

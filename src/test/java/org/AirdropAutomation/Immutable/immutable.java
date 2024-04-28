@@ -30,7 +30,12 @@ public class immutable {
         Thread.sleep(2000);
         click("//*[@data-testid=\"claim-gems__connect-btn\"]");
         waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 20);
-        click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
+        try {
+            click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
+        } catch (Exception e) {
+            click("//*[@data-testid=\"close-button__icon\"]");
+            click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
+        }
 
         Set<String> allWindows2 = driver.getWindowHandles();
         List<String> windowHandlesList2 = new ArrayList<>(allWindows2);
