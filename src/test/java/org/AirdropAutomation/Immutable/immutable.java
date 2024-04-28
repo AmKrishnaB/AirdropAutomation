@@ -47,7 +47,7 @@ public class immutable {
         waitTillVisible("//*[text()=\"Accept\"]", 10);
         click("//*[text()=\"Accept\"]");
         driver.switchTo().window(windowHandlesList3.get(0));
-        waitTillVisible("//*[text()=\"You've claimed\"]", 10);
+        waitTillVisible("//*[text()=\"Daily Gem Claimed\"]", 10);
         
     }
 
