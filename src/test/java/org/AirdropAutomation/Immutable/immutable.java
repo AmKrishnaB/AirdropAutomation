@@ -27,7 +27,7 @@ public class immutable {
         driver.switchTo().window(windowHandlesList1.get(0));
         Thread.sleep(1000);
         driver.get("https://imx.community/gems");
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         click("//*[@data-testid=\"claim-gems__connect-btn\"]");
         waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 20);
         try {
