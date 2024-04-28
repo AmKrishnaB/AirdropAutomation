@@ -1,5 +1,7 @@
 package org.AirdropAutomation.Immutable;
 
+import org.openqa.selenium.By;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -48,7 +50,40 @@ public class immutable {
         click("//*[text()=\"Accept\"]");
         driver.switchTo().window(windowHandlesList3.get(0));
         waitTillVisible("//*[text()=\"Daily Gem Claimed\"]", 10);
-        
     }
 
+    public static void collectGem() throws InterruptedException {
+        driver.get("https://imx.community/gems");
+        Thread.sleep(2000);
+        click("//*[@data-testid=\"claim-gems__connect-btn\"]");
+        waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 20);
+        click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
+
+        Set<String> allWindows2 = driver.getWindowHandles();
+        List<String> windowHandlesList2 = new ArrayList<>(allWindows2);
+        driver.switchTo().window(windowHandlesList2.get(1));
+        input("//*[@data-testid=\"TextInput__input\"]", email.address);
+        click("//*[@data-testid=\"TextInput__rightButtonsContainer__rightButtCon__icon\"]");
+        Thread.sleep(3000);
+        emailUtilities.readOtpAndDelete();
+        input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", email.otp);
+
+        driver.switchTo().window(windowHandlesList2.get(0));
+        waitUntilElementDisappears("//*[@data-testid=\"connect-wallet\"]", 20);
+        Thread.sleep(1000);
+
+        if (driver.findElement(By.xpath("//*[@data-testid=\"claim-gems__get-gems-btn\"]")).isDisplayed()){
+            click("//*[@data-testid=\"claim-gems__get-gems-btn\"]");
+
+            Set<String> allWindows3 = driver.getWindowHandles();
+            List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
+            driver.switchTo().window(windowHandlesList3.get(1));
+            waitTillVisible("//*[text()=\"Accept\"]", 20);
+            click("//*[text()=\"Accept\"]");
+            driver.switchTo().window(windowHandlesList3.get(0));
+            waitTillVisible("//*[text()=\"Daily Gem Claimed\"]", 10);
+        } else {
+            System.out.println("Gem already collected");
+        }
+    }
 }

@@ -6,10 +6,12 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 public class ExcelReader {
     public static List<String> readListFromExcel(String filePath, String sheetName) {
@@ -82,6 +84,33 @@ public class ExcelReader {
             throw new RuntimeException(e);
         }
         return values;
+    }
+
+
+    public static String[][] readExcelAsArray(String filePath) throws IOException {
+        FileInputStream excelFile = new FileInputStream(new File(filePath));
+        Workbook workbook = new XSSFWorkbook(excelFile);
+        Sheet datatypeSheet = workbook.getSheetAt(0);
+        Iterator<Row> iterator = datatypeSheet.iterator();
+
+        int totalRows = datatypeSheet.getPhysicalNumberOfRows();
+        int totalCols = datatypeSheet.getRow(0).getPhysicalNumberOfCells();
+        String[][] array = new String[totalRows][totalCols];
+
+        int rowIndex = 0;
+        while (iterator.hasNext()) {
+            Row currentRow = iterator.next();
+            Iterator<Cell> cellIterator = currentRow.iterator();
+            int colIndex = 0;
+            while (cellIterator.hasNext()) {
+                Cell currentCell = cellIterator.next();
+                array[rowIndex][colIndex] = currentCell.toString();
+                colIndex++;
+            }
+            rowIndex++;
+        }
+        workbook.close();
+        return array;
     }
 
 
