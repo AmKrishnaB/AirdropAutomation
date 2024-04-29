@@ -1,11 +1,9 @@
 package AirdropAutomation.Immutable;
 
 import org.openqa.selenium.By;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import static Utility.LaunchBrowser.driver;
 import static Utility.Actions.*;
 
@@ -98,9 +96,6 @@ public class immutable {
         driver.switchTo().window(windowHandlesList3.get(0));
         waitTillVisible("//*[text()=\"Daily Gem Claimed\"]", 10);
     }
-
-
-
 
     public static void collectGem() throws InterruptedException {
         driver.get("https://imx.community/gems");
