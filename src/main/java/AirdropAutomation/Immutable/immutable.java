@@ -74,19 +74,19 @@ public class immutable {
         input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", email.otp);
 
         driver.switchTo().window(windowHandlesList2.get(0));
-        waitUntilElementDisappears("//*[@data-testid=\"connect-wallet\"]", 20);
+        waitUntilElementDisappears("//*[@data-testid=\"connect-wallet\"]", 30);
         Thread.sleep(1000);
 
-        if (driver.findElement(By.xpath("//*[@data-testid=\"claim-gems__get-gems-btn\"]")).isDisplayed()){
+        if (driver.findElements(By.xpath("//*[@data-testid=\"claim-gems__get-gems-btn\"]")).size()>0){
             click("//*[@data-testid=\"claim-gems__get-gems-btn\"]");
 
             Set<String> allWindows3 = driver.getWindowHandles();
             List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
             driver.switchTo().window(windowHandlesList3.get(1));
-            waitTillVisible("//*[text()=\"Accept\"]", 20);
+            waitTillVisible("//*[text()=\"Accept\"]", 180);
             click("//*[text()=\"Accept\"]");
             driver.switchTo().window(windowHandlesList3.get(0));
-            waitTillVisible("//*[text()=\"Daily Gem Claimed\"]", 10);
+            waitTillVisible("//*[text()=\"Daily Gems Claimed\"]", 10);
         } else {
             System.out.println("Gem already collected");
         }

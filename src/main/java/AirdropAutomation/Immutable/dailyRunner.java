@@ -20,8 +20,10 @@ public class dailyRunner {
                 email.address = strings[0];
                 email.token = strings[1];
                 immutable.collectGem();
+                System.out.println("Gem collected in account no: "+ i +", with email id: "+email.address);
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("_______________________Error in account no: "+ i +", with email id: "+email.address);
                 i--;
             } finally {
                 driver.quit();
