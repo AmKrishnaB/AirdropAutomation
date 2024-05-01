@@ -107,7 +107,13 @@ public class immutable {
         driver.get("https://imx.community/gems");
         Thread.sleep(2000);
         click("//*[@data-testid=\"claim-gems__connect-btn\"]");
-        waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 20);
+        try {
+            waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 5);
+        } catch (Exception e) {
+            driver.navigate().refresh();
+            click("//*[@data-testid=\"claim-gems__connect-btn\"]");
+            waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 5);
+        }
         click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
 
         Set<String> allWindows2 = driver.getWindowHandles();
@@ -119,22 +125,31 @@ public class immutable {
         emailUtilities.readOtpAndDelete();
         input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", email.otp);
 
-        driver.switchTo().window(windowHandlesList2.get(0));
-        waitUntilElementDisappears("//*[@data-testid=\"connect-wallet\"]", 30);
-        Thread.sleep(1000);
+        Thread.sleep(5000);
 
-        if (driver.findElements(By.xpath("//*[@data-testid=\"claim-gems__get-gems-btn\"]")).size()>0){
-            click("//*[@data-testid=\"claim-gems__get-gems-btn\"]");
+        Set<String> allWindowse = driver.getWindowHandles();
+        List<String> windowHandlesList = new ArrayList<>(allWindowse);
 
-            Set<String> allWindows3 = driver.getWindowHandles();
-            List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
-            driver.switchTo().window(windowHandlesList3.get(1));
-            waitTillVisible("//*[text()=\"Accept\"]", 180);
-            click("//*[text()=\"Accept\"]");
-            driver.switchTo().window(windowHandlesList3.get(0));
-            waitTillVisible("//*[text()=\"Daily Gems Claimed\"]", 10);
+        if (windowHandlesList.size()==1){
+            driver.switchTo().window(windowHandlesList2.get(0));
+            waitUntilElementDisappears("//*[@data-testid=\"connect-wallet\"]", 30);
+            Thread.sleep(1000);
+
+            if (driver.findElements(By.xpath("//*[@data-testid=\"claim-gems__get-gems-btn\"]")).size()>0){
+                click("//*[@data-testid=\"claim-gems__get-gems-btn\"]");
+
+                Set<String> allWindows3 = driver.getWindowHandles();
+                List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
+                driver.switchTo().window(windowHandlesList3.get(1));
+                waitTillVisible("//*[text()=\"Accept\"]", 180);
+                click("//*[text()=\"Accept\"]");
+                driver.switchTo().window(windowHandlesList3.get(0));
+                waitTillVisible("//*[text()=\"Daily Gems Claimed\"]", 10);
+            } else {
+                System.out.println("Gem already collected");
+            }
         } else {
-            System.out.println("Gem already collected");
+            throw new RuntimeException("Couldn't Close window, IP issue");
         }
     }
 }
