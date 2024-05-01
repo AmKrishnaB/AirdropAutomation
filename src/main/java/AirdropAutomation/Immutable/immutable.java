@@ -106,15 +106,8 @@ public class immutable {
     public static void collectGem() throws InterruptedException {
         driver.get("https://imx.community/gems");
         Thread.sleep(2000);
-        click("//*[@data-testid=\"claim-gems__connect-btn\"]");
-        try {
-            waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 5);
-        } catch (Exception e) {
-            driver.navigate().refresh();
-            click("//*[@data-testid=\"claim-gems__connect-btn\"]");
-            waitTillVisible("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]", 5);
-        }
-        click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
+
+        clickClaim();
 
         Set<String> allWindows2 = driver.getWindowHandles();
         List<String> windowHandlesList2 = new ArrayList<>(allWindows2);
@@ -135,7 +128,7 @@ public class immutable {
             waitUntilElementDisappears("//*[@data-testid=\"connect-wallet\"]", 30);
             Thread.sleep(1000);
 
-            if (driver.findElements(By.xpath("//*[@data-testid=\"claim-gems__get-gems-btn\"]")).size()>0){
+            if (!driver.findElements(By.xpath("//*[@data-testid=\"claim-gems__get-gems-btn\"]")).isEmpty()){
                 click("//*[@data-testid=\"claim-gems__get-gems-btn\"]");
 
                 Set<String> allWindows3 = driver.getWindowHandles();
@@ -151,5 +144,24 @@ public class immutable {
         } else {
             throw new RuntimeException("Couldn't Close window, IP issue");
         }
+    }
+
+
+
+    public static void clickClaim() throws InterruptedException {
+
+        Boolean popUpStatus = false;
+
+        while (!popUpStatus){
+            click("//*[@data-testid=\"claim-gems__connect-btn\"]");
+            Thread.sleep(1000);
+            if (!driver.findElements(By.xpath("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]")).isEmpty()){
+                popUpStatus = true;
+            } else {
+                driver.navigate().refresh();
+            }
+        }
+
+        click("//*[@data-testid=\"wallet-list-com.immutable.passport__label\"]");
     }
 }
