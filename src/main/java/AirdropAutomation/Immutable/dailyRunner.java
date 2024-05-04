@@ -9,10 +9,10 @@ import static Utility.LaunchBrowser.driver;
 
 public class dailyRunner {
     public static void main(String[] args) throws IOException, InterruptedException {
-        String[][] emailArray = ExcelReader.readExcelAsArray(System.getProperty("user.dir") + "\\Excel\\Immutable\\immutable.xlsx");
+        String[][] emailArray = ExcelReader.readExcelAsArray(System.getProperty("user.dir") + "\\Excel\\Immutable\\immutabler.xlsx");
         int rowSize = emailArray.length;
 
-        for (int i = 0; i < emailArray.length; i++) {
+        for (int i = 670; i < emailArray.length; i++) {
             LaunchBrowser.driver = LaunchBrowser.webdriver();
             driver.manage().window().maximize();
             String[] strings = emailArray[i];

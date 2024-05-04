@@ -44,7 +44,7 @@ public class ExcelWriter {
         }
     }
 
-    public static void writeListAndStringToExcel(List<String> phrase,String address , String filePath, String sheetName) {
+    public static void writeListAndStringToExcel(List<String> phrase,String address, String filePath, String sheetName) {
         try (FileInputStream fis = new FileInputStream(filePath);
              Workbook workbook = new XSSFWorkbook(fis);
              FileOutputStream fos = new FileOutputStream(filePath)) {
@@ -79,6 +79,48 @@ public class ExcelWriter {
             e.printStackTrace();
         }
     }
+
+
+    public static void writePhraseAddressKeyToExcel(List<String> phrase, String address, String key , String filePath, String sheetName) {
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis);
+             FileOutputStream fos = new FileOutputStream(filePath)) {
+            // Get the existing sheet by name
+            Sheet sheet = workbook.getSheet(sheetName);
+
+            // If the sheet doesn't exist, create a new one
+            if (sheet == null) {
+                sheet = workbook.createSheet(sheetName);
+            }
+
+            // Find the last row index
+            int lastRow = sheet.getLastRowNum();
+
+            // Create a new row
+            Row newRow = sheet.createRow(lastRow + 1);
+
+            // Create a cell and set the value for each column
+            for (int i = 0; i < phrase.size(); i++) {
+                Cell cell = newRow.createCell(i);
+                cell.setCellValue(phrase.get(i));
+            }
+
+            Cell cell = newRow.createCell(phrase.size());
+            cell.setCellValue(address);
+
+            Cell cell1 = newRow.createCell(phrase.size()+1);
+            cell1.setCellValue(key);
+
+            // Write the updated workbook to a file
+            workbook.write(fos);
+            System.out.println("Values appended to existing sheet in Excel file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     public static void writeTwoStringArraysToExcel(String[] phrase,String[] credentials , String filePath, String sheetName) {
         try (FileInputStream fis = new FileInputStream(filePath);

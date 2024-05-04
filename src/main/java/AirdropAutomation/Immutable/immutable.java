@@ -134,7 +134,7 @@ public class immutable {
                 Set<String> allWindows3 = driver.getWindowHandles();
                 List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
                 driver.switchTo().window(windowHandlesList3.get(1));
-                waitTillVisible("//*[text()=\"Accept\"]", 180);
+                waitTillVisible("//*[text()=\"Accept\"]", 33);
                 click("//*[text()=\"Accept\"]");
                 driver.switchTo().window(windowHandlesList3.get(0));
                 waitTillVisible("//*[text()=\"Daily Gems Claimed\"]", 10);
