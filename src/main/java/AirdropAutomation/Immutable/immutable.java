@@ -114,7 +114,7 @@ public class immutable {
         driver.switchTo().window(windowHandlesList2.get(1));
         input("//*[@data-testid=\"TextInput__input\"]", email.address);
         click("//*[@data-testid=\"TextInput__rightButtonsContainer__rightButtCon__icon\"]");
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         emailUtilities.readOtpAndDelete();
         input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", email.otp);
 
@@ -134,7 +134,7 @@ public class immutable {
                 Set<String> allWindows3 = driver.getWindowHandles();
                 List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
                 driver.switchTo().window(windowHandlesList3.get(1));
-                waitTillVisible("//*[text()=\"Accept\"]", 33);
+                waitTillVisible("//*[text()=\"Accept\"]", 30);
                 click("//*[text()=\"Accept\"]");
                 driver.switchTo().window(windowHandlesList3.get(0));
                 waitTillVisible("//*[text()=\"Daily Gems Claimed\"]", 10);
