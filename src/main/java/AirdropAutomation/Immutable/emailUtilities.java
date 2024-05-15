@@ -62,11 +62,11 @@ public class emailUtilities {
         JsonPath jsonPath = new JsonPath(responseBodyString);
 
 
-        String subject =jsonPath.getString("'hydra:member'[0].subject");
+        String subject =jsonPath.getString("'hydra:member'[0].intro");
 
         String[] subArray = subject.split(" ");
 
-        email.otp=subArray[2];
+        email.otp=subArray[18];
     }
 
 }
