@@ -105,7 +105,7 @@ public class immutable {
 
     public static void collectGem() throws InterruptedException {
         driver.get("https://imx.community/gems");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         clickClaim();
 
@@ -134,10 +134,10 @@ public class immutable {
                 Set<String> allWindows3 = driver.getWindowHandles();
                 List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
                 driver.switchTo().window(windowHandlesList3.get(1));
-                waitTillVisible("//*[text()=\"Accept\"]", 30);
+                waitTillVisible("//*[text()=\"Accept\"]", 15);
                 click("//*[text()=\"Accept\"]");
                 driver.switchTo().window(windowHandlesList3.get(0));
-                waitTillVisible("//*[text()=\"Daily Gems Claimed\"]", 10);
+                waitTillVisible("//*[text()=\"1 Gem Claimed\"]", 10);
             } else {
                 System.out.println("Gem already collected");
             }
