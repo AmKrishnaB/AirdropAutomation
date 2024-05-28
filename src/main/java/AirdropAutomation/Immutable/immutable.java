@@ -128,8 +128,8 @@ public class immutable {
             waitUntilElementDisappears("//*[@data-testid=\"connect-wallet\"]", 30);
             Thread.sleep(1000);
 
-            if (!driver.findElements(By.xpath("//*[@data-testid=\"claim-gems__get-gems-btn\"]")).isEmpty()){
-                click("//*[@data-testid=\"claim-gems__get-gems-btn\"]");
+            if (!driver.findElements(By.xpath("//*[@data-testid=\"claim-gems__claim-btn\"]")).isEmpty()){
+                click("//*[@data-testid=\"claim-gems__claim-btn\"]");
 
                 Set<String> allWindows3 = driver.getWindowHandles();
                 List<String> windowHandlesList3 = new ArrayList<>(allWindows3);
@@ -137,7 +137,7 @@ public class immutable {
                 waitTillVisible("//*[text()=\"Accept\"]", 30);
                 click("//*[text()=\"Accept\"]");
                 driver.switchTo().window(windowHandlesList3.get(0));
-                waitTillVisible("//*[text()=\"Daily Gems Claimed\"]", 10);
+                waitTillVisible("//*[text()=\"Next In\"]", 10);
             } else {
                 System.out.println("Gem already collected");
             }
