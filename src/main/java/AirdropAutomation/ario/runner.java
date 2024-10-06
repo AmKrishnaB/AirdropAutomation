@@ -20,10 +20,10 @@ public class runner {
             try {
                 email.address = strings[0];
                 ario.subscribe();
-                System.out.println("Ario Subscribed in acc no: "+ i +", with email id: "+email.address);
+                System.out.println("Ario Subscribed in acc no: "+ i +", with emailVariableStorage id: "+email.address);
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("_______________________Error in account no: "+ i +", with email id: "+email.address);
+                System.out.println("_______________________Error in account no: "+ i +", with emailVariableStorage id: "+email.address);
                 i--;
             } finally {
                 driver.quit();

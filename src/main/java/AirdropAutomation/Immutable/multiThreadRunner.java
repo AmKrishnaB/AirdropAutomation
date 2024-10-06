@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import Utility.ExcelWriter;
 import Utility.LaunchBrowser;
+import Utility.emailVariableStorage;
+import Utility.emailUtilities;
 
 public class multiThreadRunner {
     public static void main(String[] args) throws InterruptedException {
@@ -43,8 +45,8 @@ public class multiThreadRunner {
                 emailUtilities.randomEmailGen();
                 emailUtilities.createAccount();
                 emailUtilities.createToken();
-                immutable.createWallet(email.address);
-                ExcelWriter.writeAddressAndTokenToExcel(email.address, email.token, System.getProperty("user.dir") + "\\Excel\\Immutable\\immutable.xlsx", "Sheet1");
+                immutable.createWallet(emailVariableStorage.address);
+                ExcelWriter.writeAddressAndTokenToExcel(emailVariableStorage.address, emailVariableStorage.token, System.getProperty("user.dir") + "\\Excel\\Immutable\\immutable.xlsx", "Sheet1");
                 System.out.println("Current success count: " + (taskId + 1));
             } catch (Exception e) {
                 e.printStackTrace();

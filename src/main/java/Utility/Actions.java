@@ -1,6 +1,7 @@
 package Utility;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,6 +13,10 @@ public class Actions extends LaunchBrowser{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         driver.findElement(By.xpath(xpath)).click();
+    }
+
+    public static void jsClick(String xpath){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.xpath(xpath)));
     }
 
     public static void clickWithID(String ID){
@@ -55,6 +60,9 @@ public class Actions extends LaunchBrowser{
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         return driver.findElement(By.xpath(xpath)).isDisplayed();
     }
+
+
+
 
 
 }

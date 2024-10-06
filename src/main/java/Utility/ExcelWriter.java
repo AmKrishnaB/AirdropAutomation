@@ -5,11 +5,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import static AirdropAutomation.Metamask.AccountCreator.log;
 
 public class ExcelWriter {
     public static void writeListToExcel(List<String> values, String filePath, String sheetName) {
@@ -252,6 +252,45 @@ public class ExcelWriter {
             Cell currentCell= currentRow.createCell(columnNumber);
             currentCell.setCellValue("Done");
             workbook.write(fos);
+        }
+    }
+
+    public static void writeFourStringsToExcel(String address, String token, String phrase, String privateKey, String filePath, String sheetName) {
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis);
+             FileOutputStream fos = new FileOutputStream(filePath)) {
+            // Get the existing sheet by name
+            Sheet sheet = workbook.getSheet(sheetName);
+
+            // If the sheet doesn't exist, create a new one
+            if (sheet == null) {
+                sheet = workbook.createSheet(sheetName);
+            }
+
+            // Find the last row index
+            int lastRow = sheet.getLastRowNum();
+
+            // Create a new row
+            Row newRow = sheet.createRow(lastRow + 1);
+
+            // Create a cell and set the value for each column
+            Cell cell = newRow.createCell(0);
+            cell.setCellValue(address);
+
+            Cell cell2 = newRow.createCell(1);
+            cell2.setCellValue(token);
+
+            Cell cell3 = newRow.createCell(2);
+            cell3.setCellValue(phrase);
+
+            Cell cell4 = newRow.createCell(3);
+            cell4.setCellValue(privateKey);
+
+            // Write the updated workbook to a file
+            workbook.write(fos);
+            System.out.println("Values appended to existing sheet in Excel file successfully.");
+        } catch (IOException e) {
+            log.error(e.getMessage());
         }
     }
 }

@@ -28,7 +28,7 @@ public class Runner {
 //        driver = webdriverWithLeo();
 //        driver.manage().window().maximize();
 //        try {
-//            String[] wallet = PhraseCreator.createPhrase();
+//            String[] wallet = PhraseCreator.createStringPhrase();
 //            ExcelWriter.writeStringsToExcel(wallet, System.getProperty("user.dir")+"\\Excel\\LeoWallet\\Phrases\\LeoWallets.xlsx", "Sheet1");
 //        }
 //        catch (Exception ignored){}

@@ -1,5 +1,7 @@
 package AirdropAutomation.Immutable;
 
+import Utility.emailVariableStorage;
+import Utility.emailUtilities;
 import org.openqa.selenium.By;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +17,17 @@ public class immutable {
         Set<String> allWindows1 = driver.getWindowHandles();
         List<String> windowHandlesList1 = new ArrayList<>(allWindows1);
         driver.switchTo().window(windowHandlesList1.get(1));
-        input("//*[@data-testid=\"TextInput__input\"]", email.address);
+        input("//*[@data-testid=\"TextInput__input\"]", emailVariableStorage.address);
         click("//*[@data-testid=\"TextInput__rightButtonsContainer__rightButtCon__icon\"]");
         Thread.sleep(3000);
         try {
             emailUtilities.readOtpAndDelete();
         } catch (Exception e) {
-            System.out.println("Unable to get email otp. Retrying");
+            System.out.println("Unable to get emailVariableStorage otp. Retrying");
             Thread.sleep(2000);
             emailUtilities.readOtpAndDelete();
         }
-        input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", email.otp);
+        input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", emailVariableStorage.otp);
         click("//*[text()=\"Yes\"]");
 
         driver.switchTo().window(windowHandlesList1.get(0));
@@ -81,11 +83,11 @@ public class immutable {
         Set<String> allWindows2 = driver.getWindowHandles();
         List<String> windowHandlesList2 = new ArrayList<>(allWindows2);
         driver.switchTo().window(windowHandlesList2.get(1));
-        input("//*[@data-testid=\"TextInput__input\"]", email.address);
+        input("//*[@data-testid=\"TextInput__input\"]", emailVariableStorage.address);
         click("//*[@data-testid=\"TextInput__rightButtonsContainer__rightButtCon__icon\"]");
         Thread.sleep(3000);
         emailUtilities.readOtpAndDelete();
-        input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", email.otp);
+        input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", emailVariableStorage.otp);
         click("//*[text()=\"Yes\"]");
 
         Thread.sleep(5000);
@@ -112,11 +114,11 @@ public class immutable {
         Set<String> allWindows2 = driver.getWindowHandles();
         List<String> windowHandlesList2 = new ArrayList<>(allWindows2);
         driver.switchTo().window(windowHandlesList2.get(1));
-        input("//*[@data-testid=\"TextInput__input\"]", email.address);
+        input("//*[@data-testid=\"TextInput__input\"]", emailVariableStorage.address);
         click("//*[@data-testid=\"TextInput__rightButtonsContainer__rightButtCon__icon\"]");
-        Thread.sleep(2000);
+        Thread.sleep(10000);
         emailUtilities.readOtpAndDelete();
-        input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", email.otp);
+        input("//*[@data-testid=\"passwordless_passcode__TextInput--0__input\"]", emailVariableStorage.otp);
 
         Thread.sleep(5000);
 

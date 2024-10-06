@@ -6,6 +6,7 @@ import Utility.ExcelWriter;
 import Utility.LaunchBrowser;
 import AirdropAutomation.Faucets.L2Faucet;
 
+import java.util.Collections;
 import java.util.List;
 
 import static Utility.LaunchBrowser.driver;
@@ -21,7 +22,7 @@ public class Runner {
             LaunchBrowser.driver =LaunchBrowser.webdriverWithMetamask();
             driver.manage().window().maximize();
             try {
-                List<String> phrase = AccountCreator.createPhrase();
+                List<String> phrase = Collections.singletonList(AccountCreator.createStringPhrase());
                 String address = AccountCreator.createPhraseAndSignup();
                 L2Faucet.claim(address);
                 ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
@@ -39,7 +40,7 @@ public class Runner {
             try {
                 driver = LaunchBrowser.webdriverWithMetamask();
                 driver.manage().window().maximize();
-                List<String> phrase = AccountCreator.createPhrase();
+                List<String> phrase = Collections.singletonList(AccountCreator.createStringPhrase());
                 String address = AccountCreator.createPhraseAndSignup();
                 ExcelWriter.writeListAndStringToExcel(phrase, address, System.getProperty("user.dir")+"\\Excel\\Metamask\\phrase.xlsx", "Sheet1");
             }

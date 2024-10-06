@@ -9,8 +9,8 @@ public class ario {
     public static void subscribe(){
         driver.get("https://ar.io/newsletter");
         driver.switchTo().frame(driver.findElement(By.xpath("//*[@src=\"https://pds-inc.typeform.com/newsletter\"]")));
-        waitTillVisible("//*[@type=\"email\"]", 20);
-        input("//*[@type=\"email\"]", email.address);
+        waitTillVisible("//*[@type=\"emailVariableStorage\"]", 20);
+        input("//*[@type=\"emailVariableStorage\"]", email.address);
         click("//*[@data-qa=\"submit-button deep-purple-submit-button\"]");
         waitTillVisible("//*[text()=\"Success! Keep an eye on that inbox.\"]", 10);
     }

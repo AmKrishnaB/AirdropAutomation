@@ -54,7 +54,7 @@ public class metamask {
         click("//*[@data-testid=\"onboarding-complete-done\"]");
         click("//*[@data-testid=\"pin-extension-next\"]");
         click("//*[@data-testid=\"pin-extension-done\"]");
-        Thread.sleep(2000);
+        Thread.sleep(6000);
         click("//*[@data-testid=\"popover-close\"]");
         click("//*[@data-testid=\"account-options-menu-button\"]");
         click("//*[@data-testid=\"account-list-menu-details\"]");
