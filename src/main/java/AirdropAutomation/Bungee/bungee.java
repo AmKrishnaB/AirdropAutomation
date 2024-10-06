@@ -37,7 +37,7 @@ public class bungee {
         jsClick("//*[@data-testid=\"page-container-footer-next\"]");
         driver.switchTo().window(windowHandlesList.get(0));
 
-        waitTillVisible("//*[text()=\"Drop Balls\"]", 15);
+        waitTillVisible("//*[text()=\"Drop Balls\"]", 30);
         jsClick("//*[text()=\"Drop Balls\"]");
         waitTillVisible("//*[text()=\"Congratulations\"]", 15);
     }

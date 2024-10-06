@@ -19,8 +19,8 @@ public class AccountCreator extends LaunchBrowser{
 
     public static List<String> createPhraseList() throws InterruptedException {
         driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#onboarding/welcome");
-        Thread.sleep(2000);
-        waitTillVisible("//input[@class=\"check-box onboarding__terms-checkbox far fa-square\"]", 10);
+        Thread.sleep(4000);
+        waitTillVisible("//input[@class=\"check-box onboarding__terms-checkbox far fa-square\"]", 15);
         Set<String> allWindows = driver.getWindowHandles();
         List<String> windowHandlesList = new ArrayList<>(allWindows);
         if (windowHandlesList.size() > 1) {
